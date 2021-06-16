@@ -18,13 +18,18 @@ y_xor = np.array([[0], [1], [1], [0]])
 X = X_or
 y = y_or
 
-# Define perceptron AND and train it
-print("Training perceptron for dataset...")
-mlp = MLP(X, 1, 0.1)
-mlp.fit(X, y, epochs = 1000)
+mlp = MLP(X, i = X.shape[1], k = y.shape[1])
+print("Training single perceptron for dataset...")
+mlp.fit_single(X, y, epochs = 1000)
 
-# Display test result after training
-print("Testing perceptron after training...")
+print("Testing single perceptron after training...")
+for (x, target) in zip(X, y):
+	prediction_single = mlp.predict_single(x)
+	print("Input = {}, Target = {}, Prediction = {}".format(x, target[0], prediction_single))
+
+print("Training MLP for dataset...")
+mlp.fit(X, y, epochs = 1000)
+print("Testing MLP after training...")
 for (x, target) in zip(X, y):
 	prediction = mlp.predict(x)
 	print("Input = {}, Target = {}, Prediction = {}".format(x, target[0], prediction))
