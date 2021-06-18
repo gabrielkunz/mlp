@@ -15,8 +15,19 @@ X_xor = np.array([[0,0], [0,1], [1,0], [1,1]])
 y_xor = np.array([[0], [1], [1], [0]])
 
 # Select input and target
-X = X_or
-y = y_or
+dataset = 0
+while (dataset > 3 or dataset < 1):
+	dataset = int(input("Select a dataset (1 - AND table, 2 - OR table, 3 - XOR table): "))
+
+if (dataset == 1):
+	X = X_and
+	y = y_and
+elif (dataset == 2):
+	X = X_or
+	y = y_or
+elif (dataset == 3):
+	X = X_xor
+	y = y_xor
 
 mlp = MLP(X, i = X.shape[1], k = y.shape[1])
 print("Training single perceptron for dataset...")
